@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.core.widget.NestedScrollView xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/black"
+        tools:context=".Reservas">
+
+        <TextView
+            android:id="@+id/text_top"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="40sp"
+            android:textColor="@color/white"
+            android:text="@string/suas_reservas"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@id/textViewDate2"
+            app:layout_constraintRight_toRightOf="parent"
+            android:paddingTop="10sp"
+            app:layout_constraintTop_toTopOf="parent"
+            android:paddingRight="20sp"
+            />
+        <TextView
+            android:id="@+id/textViewDate2"
+            android:layout_width="327sp"
+            android:layout_height="63sp"
+            android:textColor="@color/white"
+            android:textSize="40sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textViewDate3"
+            />
+        <TextView
+            android:id="@+id/textViewDate1"
+            android:layout_width="327sp"
+            android:layout_height="69sp"
+            android:textColor="@color/white"
+            android:textSize="40sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/textViewDate3"
+            app:layout_constraintTop_toBottomOf="@id/text_top"
+            />
+        <TextView
+            android:id="@+id/textViewDate3"
+            android:layout_width="327sp"
+            android:layout_height="69sp"
+            android:textColor="@color/white"
+            android:textSize="40sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textViewDate1"
+            />
+
+        <TextView
+            android:id="@+id/textViewQuarto"
+            android:layout_width="327sp"
+            android:layout_height="69sp"
+            android:textColor="@color/white"
+            android:textSize="40sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textViewDate2"
+            />
+
+        <ImageView
+            android:contentDescription="foto do quarto escolhido"
+            android:id="@+id/quarto1"
+            android:layout_width="315sp"
+            android:layout_height="244sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textViewQuarto"
+            />
+
+        <Button
+            android:id="@+id/seta"
+            style="@style/Button12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25sp"
+            android:drawableLeft="@drawable/icon_seta"
+            android:text="@string/voltar"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            />
+
+        <Button
+            android:id="@+id/seta10"
+            style="@style/Button12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25sp"
+            android:text="@string/cancelar_reserva"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/seta"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>
