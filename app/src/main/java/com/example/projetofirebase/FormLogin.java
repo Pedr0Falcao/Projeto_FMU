@@ -93,7 +93,7 @@ public class FormLogin extends AppCompatActivity {
     // Classe DatabaseHelper para gerenciamento do banco de dados SQLite
     public static class DatabaseHelper extends SQLiteOpenHelper {
         private static final String DATABASE_NAME = "appDatabase.db";
-        private static final int DATABASE_VERSION = 1;
+        private static final int DATABASE_VERSION = 2;
         private static final String TABLE_USERS = "usuarios";
         private static final String COLUMN_EMAIL = "email";
         private static final String COLUMN_PASSWORD = "senha";

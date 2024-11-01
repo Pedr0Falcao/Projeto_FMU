@@ -10,7 +10,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     // Definições do banco de dados
     private static final String DATABASE_NAME = "appDatabase";
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 2;
 
     // Definições da tabela de usuários
     public static final String TABLE_USERS = "Usuarios";
