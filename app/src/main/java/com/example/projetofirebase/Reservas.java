@@ -12,7 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 public class Reservas extends AppCompatActivity {
 
     private static final String TAG = "ShowReservation";
-    private DatabaseHelper databaseHelper;
+    private DatabaseHelperReserva databaseHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,7 +25,7 @@ public class Reservas extends AppCompatActivity {
         final TextView textViewQuarto = findViewById(R.id.textViewQuarto);
         ImageView imageView = findViewById(R.id.quarto1);
 
-        databaseHelper = new DatabaseHelper(this);
+        databaseHelper = new DatabaseHelperReserva(this);
 
         Button bt_voltar = findViewById(R.id.seta);
         bt_voltar.setOnClickListener(v -> finish());
