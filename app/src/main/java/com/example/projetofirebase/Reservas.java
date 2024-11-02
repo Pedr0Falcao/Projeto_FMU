@@ -44,8 +44,8 @@ public class Reservas extends AppCompatActivity {
         Cursor cursor = db.query("reservas", null, null, null, null, null, null);
 
         if (cursor.moveToFirst()) {
-            String date1 = cursor.getString(cursor.getColumnIndexOrThrow("data_inicio"));
-            String date2 = cursor.getString(cursor.getColumnIndexOrThrow("data_fim"));
+            String date2 = cursor.getString(cursor.getColumnIndexOrThrow("data_inicio"));
+            String date1 = cursor.getString(cursor.getColumnIndexOrThrow("data_fim"));
             String quarto = cursor.getString(cursor.getColumnIndexOrThrow("quarto"));
 
             textViewDate1.setText(date1);
