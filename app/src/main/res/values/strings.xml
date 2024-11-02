@@ -24,12 +24,21 @@
     <string name="reservas">Reservas</string>
     <string name="contato">Contato</string>
     <string name="Reservar">Reservar</string>
-    <string name="texto_quarto_2">Sala de jantar privativa, uma cozinha totalmente equipada e uma banheira de hidromassagem</string>
-    <string name="texto_quarto_2_1">Maior e mais luxuosa acomodação disponível. Oferece espaço generoso para relaxamento e entretenimento</string>
-    <string name="texto_quarto_3_1">Um santuário de serenidade espera por você neste quarto de hotel, onde conforto e elegância se encontram </string>
-    <string name="texto_quarto_3">Uma cama adornada ocupa o centro, os tons suaves e a iluminação suave criam uma atmosfera acolhedora</string>>
-    <string name="texto_quarto_4">Suíte executiva, projetada para atender às necessidades dos viajantes a negócios</string>
-    <string name="texto_quarto_4_1">Funcionalidade e conforto, oferecendo uma área de trabalho bem equipada com uma ampla mesa e cadeira ergométrica</string>
+    <string name="texto_quarto_2">Sala de jantar privativa, uma cozinha
+totalmente equipada e uma banheira de hidromassagem</string>
+    <string name="texto_quarto_2_1">Maior e mais luxuosa acomodação
+disponível. Oferece espaço generoso para relaxamento e entretenimento
+	</
+        string>
+    <string name="texto_quarto_3_1">Um santuário de serenidade espera por
+você neste quarto de hotel, onde conforto e elegância se encontram </string>
+    <string name="texto_quarto_3">Uma cama adornada ocupa o centro, os
+tons suaves e a iluminação suave criam uma atmosfera acolhedora</string>>
+    <string name="texto_quarto_4">Suíte executiva, projetada para atender às
+necessidades dos viajantes a negócios</string>
+    <string name="texto_quarto_4_1">Funcionalidade e conforto, oferecendo
+uma área de trabalho bem equipada com uma ampla mesa e cadeira
+ergométrica</string>
     <string name="su_te_master">Suíte Master</string>
     <string name="su_te_simples">Suíte Simples</string>
     <string name="suite">Suíte business</string>
@@ -37,13 +46,20 @@
     <string name="foto_quarto">FOTO QUARTO</string>
     <string name="foto_quarto_2">FOTO QUARTO 2</string>
     <string name="foto_quarto_3">FOTO QUARTO 3</string>
-    <string name="your_string_here"><u>SUÍTE SIMPLES</u></string>
-    <string name="texto_quarto_5"><u>SUÍTE MASTER</u></string>
-    <string name="texto_quarto_6"><u>SUÍTE BUSINESS</u></string>
-    <string name="email_contato">HOTELO_OFICIAL@GMAIL.COM</string>
-    <string name="endereço">RUA DAS FIGUEIRAS, 1337\nCENTRO - 09030130 - \nSANTO ANDRÉ - SP - BRASIL</string>
-    <string name="reserva_telefone">RESERVAS: (11) 1234"en dash"5678</string>
-    <string name="whats">WHATSAPP: (11) 1234"en dash"5678</string>
+    <string name="your_string_here">
+		<u>SUÍTE SIMPLES</u>
+	</string>
+    <string name="texto_quarto_5">
+		<u>SUÍTE MASTER</u>
+	</string>
+    <string name="texto_quarto_6">
+		<u>SUÍTE BUSINESS</u>
+	</string>
+    <string name="email_contato">Hotel_Liberdade@hotmail.com</string>
+    <string name="endereço">Rua Galvão Bueno, 300\n 01506000 -
+\nLiberdade - São Paulo</string>
+    <string name="reserva_telefone">Telefone: (11)34567890</string>
+    <string name="whats">WHATSAPP: (11) 912345678</string>
     <string name="selecione_uma_data">Data E.</string>
     <string name="selecione_uma_data2">Data S.</string>
     <string name="foto_do_quarto">foto do quarto</string>
