@@ -17,7 +17,7 @@ public class Reservar2 extends AppCompatActivity {
     private EditText editTextDate;
     private EditText editTextDate4;
     private Calendar calendar;
-    private DatabaseHelper databaseHelper;
+    private DatabaseHelperReserva databaseHelper;
     String[] mensagens = {"Reserva feita com sucesso!"};
 
     @Override
@@ -33,7 +33,7 @@ public class Reservar2 extends AppCompatActivity {
         editTextDate = findViewById(R.id.editTextDate);
         editTextDate4 = findViewById(R.id.editTextDate4);
         calendar = Calendar.getInstance();
-        databaseHelper = new DatabaseHelper(this);
+        databaseHelper = new DatabaseHelperReserva(this);
 
         editTextDate.setOnClickListener(this::onClick);
         editTextDate4.setOnClickListener(this::onClick);

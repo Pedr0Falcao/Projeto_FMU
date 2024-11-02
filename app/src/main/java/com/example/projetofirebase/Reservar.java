@@ -12,12 +12,14 @@ import android.widget.EditText;
 import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.material.snackbar.Snackbar;
 import java.util.Calendar;
+import android.content.Context;
+import android.database.sqlite.SQLiteOpenHelper;
 
 public class Reservar extends AppCompatActivity {
     private EditText editTextDate;
     private EditText editTextDate3;
     private Calendar calendar;
-    private DatabaseHelper databaseHelper;
+    private DatabaseHelperReserva databaseHelper;
     String[] mensagens = {"Reserva feita com sucesso!"};
 
     @Override
@@ -33,7 +35,7 @@ public class Reservar extends AppCompatActivity {
         editTextDate = findViewById(R.id.editTextDate);
         editTextDate3 = findViewById(R.id.editTextDate3);
         calendar = Calendar.getInstance();
-        databaseHelper = new DatabaseHelper(this);
+        databaseHelper = new DatabaseHelperReserva(this);
 
         editTextDate.setOnClickListener(this::onClick);
         editTextDate3.setOnClickListener(this::onClick);
