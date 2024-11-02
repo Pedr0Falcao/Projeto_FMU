@@ -19,13 +19,30 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String COLUMN_EMAIL = "email";
     public static final String COLUMN_SENHA = "senha";
 
+    // Definições da tabela de reservas
+    public static final String TABLE_RESERVAS = "Reservas";
+    public static final String COLUMN_DATA_INICIO = "data_inicio";
+    public static final String COLUMN_DATA_FIM = "data_fim";
+    public static final String COLUMN_QUARTO = "quarto";
+    public static final String COLUMN_USER_ID = "userID";
+
     // Criação da tabela de usuários
-    private static final String TABLE_CREATE =
+    private static final String TABLE_USERS_CREATE =
             "CREATE TABLE " + TABLE_USERS + " (" +
                     COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                     COLUMN_NOME + " TEXT NOT NULL, " +
                     COLUMN_EMAIL + " TEXT NOT NULL UNIQUE, " +
                     COLUMN_SENHA + " TEXT NOT NULL);";
+
+    // Criação da tabela de reservas
+    private static final String TABLE_RESERVAS_CREATE =
+            "CREATE TABLE " + TABLE_RESERVAS + " (" +
+                    COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                    COLUMN_DATA_INICIO + " TEXT NOT NULL, " +
+                    COLUMN_DATA_FIM + " TEXT NOT NULL, " +
+                    COLUMN_QUARTO + " TEXT NOT NULL, " +
+                    COLUMN_USER_ID + " INTEGER NOT NULL, " +
+                    "FOREIGN KEY (" + COLUMN_USER_ID + ") REFERENCES " + TABLE_USERS + "(" + COLUMN_ID + "));";
 
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -33,13 +50,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL(TABLE_CREATE);
+        db.execSQL(TABLE_USERS_CREATE); // Cria a tabela de usuários
+        db.execSQL(TABLE_RESERVAS_CREATE); // Cria a tabela de reservas
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_USERS);
-        onCreate(db);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_RESERVAS); // Remove a tabela de reservas
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_USERS); // Remove a tabela de usuários
+        onCreate(db); // Cria as tabelas novamente
     }
 
     // Método para inserir um novo usuário
@@ -110,5 +129,29 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
         db.close();
         return userName;
+    }
+
+    // Método para inserir uma nova reserva
+    public boolean addReservation(String dataInicio, String dataFim, String quarto, String userId) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(COLUMN_DATA_INICIO, dataInicio);
+        values.put(COLUMN_DATA_FIM, dataFim);
+        values.put(COLUMN_QUARTO, quarto);
+        values.put(COLUMN_USER_ID, userId);
+
+        long result = db.insert(TABLE_RESERVAS, null, values);
+        db.close();
+        return result != -1;  // retorna true se a inserção for bem-sucedida
+    }
+
+    // Método para obter reservas por ID de usuário
+    public Cursor getReservationsByUserId(String userId) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        return db.query(TABLE_RESERVAS,
+                null, // Todas as colunas
+                COLUMN_USER_ID + "=?",
+                new String[]{userId},
+                null, null, null);
     }
 }
