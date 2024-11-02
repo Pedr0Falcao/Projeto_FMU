@@ -1,7 +1,9 @@
 package com.example.projetofirebase;
 
 import android.app.DatePickerDialog;
+import android.content.ContentValues;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
@@ -9,23 +11,20 @@ import android.widget.Button;
 import android.widget.EditText;
 import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.material.snackbar.Snackbar;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.Calendar;
-import java.util.HashMap;
-import java.util.Map;
 
 public class Reservar3 extends AppCompatActivity {
     private EditText editTextDate;
     private EditText editTextDate2;
     private Calendar calendar;
-    private FirebaseFirestore db;
+    private DatabaseHelper databaseHelper;
     String[] mensagens = {"Reserva feita com sucesso!"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reservar);
+
         IniciarComponentes();
 
         Button bt_voltar = findViewById(R.id.seta);
@@ -34,21 +33,17 @@ public class Reservar3 extends AppCompatActivity {
         editTextDate = findViewById(R.id.editTextDate);
         editTextDate2 = findViewById(R.id.editTextDate2);
         calendar = Calendar.getInstance();
-        db = FirebaseFirestore.getInstance();
+        databaseHelper = new DatabaseHelper(this);
 
         editTextDate.setOnClickListener(this::onClick);
         editTextDate2.setOnClickListener(this::onClick);
 
         Button buttonConfirm = findViewById(R.id.buttonConfirm);
-
-        buttonConfirm.setOnClickListener(v -> {
-            confirmReservation();
-            saveToFirestore(v); // Pass the current View when calling saveToFirestore
-        });
+        buttonConfirm.setOnClickListener(this::saveReservation);
     }
 
     private void confirmReservation() {
-        // Implement confirmation logic here
+        // Implement confirmation logic here if needed
     }
 
     private void IniciarComponentes() {
@@ -60,12 +55,10 @@ public class Reservar3 extends AppCompatActivity {
         int month = calendar.get(Calendar.MONTH);
         int dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
 
-        // Initialize the DatePickerDialog with the selected date
         DatePickerDialog datePickerDialog = new DatePickerDialog(Reservar3.this,
                 (view, year1, monthOfYear, dayOfMonth1) -> {
                     String selectedDate = dayOfMonth1 + "/" + (monthOfYear + 1) + "/" + year1;
 
-                    // Set the selected date directly to the clicked EditText field
                     if (v == editTextDate) {
                         editTextDate.setText(selectedDate);
                     } else if (v == editTextDate2) {
@@ -73,52 +66,44 @@ public class Reservar3 extends AppCompatActivity {
                     }
                 }, year, month, dayOfMonth);
 
-        // Show the DatePickerDialog based on the EditText field that was clicked
         if (v == editTextDate || v == editTextDate2) {
             datePickerDialog.show();
         }
     }
 
-    private void saveToFirestore(View v) {
+    private void saveReservation(View v) {
         String date1 = editTextDate.getText().toString();
         String date2 = editTextDate2.getText().toString();
-        String date3 = "Suíte Master";
+        String roomType = "Suíte Master";
 
-        // Get the current user ID
-        FirebaseAuth mAuth = FirebaseAuth.getInstance();
-        String userID = mAuth.getCurrentUser().getUid();
+        ContentValues values = new ContentValues();
+        values.put("data_inicio", date1);
+        values.put("data_fim", date2);
+        values.put("quarto", roomType);
 
-        // Create a new reservation object
-        Map<String, Object> reservation = new HashMap<>();
-        reservation.put("date1", date2);
-        reservation.put("date2", date1);
-        reservation.put("quarto", date3);
-        reservation.put("userID", userID);
+        SQLiteDatabase db = databaseHelper.getWritableDatabase();
+        long result = db.insert("reservas", null, values);
+        db.close();
 
-        // Add the reservation to the "reservations" collection in Firestore
-        db.collection("reservations").document(userID) // Use userID as the document ID
-                .set(reservation) // Set the data using set() to overwrite any existing data
-                .addOnSuccessListener(aVoid -> {
-                    // Data added successfully
+        if (result != -1) {
+            mostrarSnackbar(v, mensagens[0]);
+        } else {
+            mostrarSnackbar(v, "Erro ao realizar reserva");
+        }
+    }
 
-                    // You can add any additional functionality here
-
-                    Snackbar snackbar = Snackbar.make(v, mensagens[0], Snackbar.LENGTH_SHORT);
-                    snackbar.setBackgroundTint(Color.WHITE);
-                    snackbar.setTextColor(Color.BLACK);
-                    snackbar.addCallback(new Snackbar.Callback() {
-                        @Override
-                        public void onDismissed(Snackbar transientBottomBar, int event) {
-                            super.onDismissed(transientBottomBar, event);
-                            // Navigate to 'TelaPrincipal' after the Snackbar is dismissed
-                            startActivity(new Intent(Reservar3.this, TelaPrincipal.class));
-                            finish(); // Finish current activity after navigating
-                        }
-                    });
-                    snackbar.show();
-                })
-                .addOnFailureListener(e -> {
-                    // Handle errors
-                });
+    private void mostrarSnackbar(View v, String mensagem) {
+        Snackbar snackbar = Snackbar.make(v, mensagem, Snackbar.LENGTH_SHORT);
+        snackbar.setBackgroundTint(Color.WHITE);
+        snackbar.setTextColor(Color.BLACK);
+        snackbar.addCallback(new Snackbar.Callback() {
+            @Override
+            public void onDismissed(Snackbar transientBottomBar, int event) {
+                super.onDismissed(transientBottomBar, event);
+                startActivity(new Intent(Reservar3.this, TelaPrincipal.class));
+                finish();
+            }
+        });
+        snackbar.show();
     }
 }
