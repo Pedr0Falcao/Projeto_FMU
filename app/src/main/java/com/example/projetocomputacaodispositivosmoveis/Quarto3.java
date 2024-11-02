@@ -1,4 +1,4 @@
-package com.example.projetofirebase;
+package com.example.projetocomputacaodispositivosmoveis;
 
 import android.content.Intent;
 import android.os.Bundle;

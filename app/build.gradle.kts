@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.projetofirebase"
+    namespace = "com.example.projetocomputacaodispositivosmoveis"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.projetofirebase"
+        applicationId = "com.example.projetocomputacaodispositivosmoveis"
         minSdk = 21
         targetSdk = 34
         versionCode = 1
@@ -33,12 +33,6 @@ android {
 }
 
 dependencies {
-    dependencies {
-        implementation(platform("com.google.firebase:firebase-bom:32.8.1"))
-        implementation("com.google.firebase:firebase-analytics-ktx")
-        implementation("com.google.firebase:firebase-auth-ktx")
-        implementation("com.google.firebase:firebase-firestore-ktx")
-    }
     implementation(libs.appcompat)
     implementation(libs.material)
     implementation(libs.activity)

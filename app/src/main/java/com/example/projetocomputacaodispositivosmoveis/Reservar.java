@@ -1,4 +1,4 @@
-package com.example.projetofirebase;
+package com.example.projetocomputacaodispositivosmoveis;
 
 import android.app.DatePickerDialog;
 import android.content.ContentValues;
@@ -13,9 +13,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.material.snackbar.Snackbar;
 import java.util.Calendar;
 
-public class Reservar2 extends AppCompatActivity {
+public class Reservar extends AppCompatActivity {
     private EditText editTextDate;
-    private EditText editTextDate4;
+    private EditText editTextDate3;
     private Calendar calendar;
     private DatabaseHelperReserva databaseHelper;
     String[] mensagens = {"Reserva feita com sucesso!"};
@@ -23,7 +23,7 @@ public class Reservar2 extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_reservar3);
+        setContentView(R.layout.activity_reservar2);
 
         IniciarComponentes();
 
@@ -31,19 +31,15 @@ public class Reservar2 extends AppCompatActivity {
         bt_voltar.setOnClickListener(v -> finish());
 
         editTextDate = findViewById(R.id.editTextDate);
-        editTextDate4 = findViewById(R.id.editTextDate4);
+        editTextDate3 = findViewById(R.id.editTextDate3);
         calendar = Calendar.getInstance();
         databaseHelper = new DatabaseHelperReserva(this);
 
         editTextDate.setOnClickListener(this::onClick);
-        editTextDate4.setOnClickListener(this::onClick);
+        editTextDate3.setOnClickListener(this::onClick);
 
         Button buttonConfirm = findViewById(R.id.buttonConfirm);
         buttonConfirm.setOnClickListener(this::saveReservation);
-    }
-
-    private void confirmReservation() {
-        // Implement confirmation logic here if needed
     }
 
     private void IniciarComponentes() {
@@ -55,26 +51,25 @@ public class Reservar2 extends AppCompatActivity {
         int month = calendar.get(Calendar.MONTH);
         int dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
 
-        DatePickerDialog datePickerDialog = new DatePickerDialog(Reservar2.this,
+        DatePickerDialog datePickerDialog = new DatePickerDialog(Reservar.this,
                 (view, year1, monthOfYear, dayOfMonth1) -> {
                     String selectedDate = dayOfMonth1 + "/" + (monthOfYear + 1) + "/" + year1;
-
                     if (v == editTextDate) {
                         editTextDate.setText(selectedDate);
-                    } else if (v == editTextDate4) {
-                        editTextDate4.setText(selectedDate);
+                    } else if (v == editTextDate3) {
+                        editTextDate3.setText(selectedDate);
                     }
                 }, year, month, dayOfMonth);
 
-        if (v == editTextDate || v == editTextDate4) {
+        if (v == editTextDate || v == editTextDate3) {
             datePickerDialog.show();
         }
     }
 
     private void saveReservation(View v) {
         String date1 = editTextDate.getText().toString();
-        String date2 = editTextDate4.getText().toString();
-        String roomType = "Suíte Simples";
+        String date2 = editTextDate3.getText().toString();
+        String roomType = "Suíte Business";
 
         ContentValues values = new ContentValues();
         values.put("data_inicio", date1);
@@ -100,7 +95,7 @@ public class Reservar2 extends AppCompatActivity {
             @Override
             public void onDismissed(Snackbar transientBottomBar, int event) {
                 super.onDismissed(transientBottomBar, event);
-                startActivity(new Intent(Reservar2.this, TelaPrincipal.class));
+                startActivity(new Intent(Reservar.this, TelaPrincipal.class));
                 finish();
             }
         });

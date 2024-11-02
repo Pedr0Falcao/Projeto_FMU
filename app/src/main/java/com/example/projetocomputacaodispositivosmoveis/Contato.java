@@ -1,4 +1,4 @@
-package com.example.projetofirebase;
+package com.example.projetocomputacaodispositivosmoveis;
 import android.os.Bundle;
 import android.widget.Button;
 

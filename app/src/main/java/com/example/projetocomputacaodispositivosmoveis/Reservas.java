@@ -1,4 +1,4 @@
-package com.example.projetofirebase;
+package com.example.projetocomputacaodispositivosmoveis;
 
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;

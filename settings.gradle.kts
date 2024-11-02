@@ -19,6 +19,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "Projeto Firebase"
+rootProject.name = "Projeto Computação Para Dispositivos Móveis"
 include(":app")
  
